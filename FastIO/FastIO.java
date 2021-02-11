@@ -69,9 +69,15 @@ public class FastIO {
             return new BigDecimal(next());
         }
 
-        public void close()throws IOException{
-            st=null;
-            br.close();
+        public void close(){
+            try{
+                st=null;
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
         }
     }
 
@@ -84,7 +90,6 @@ public class FastIO {
         public void print(Object object){
             try{
                 writer.write(object.toString());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -94,7 +99,6 @@ public class FastIO {
         public void printf(String format,Object... os) {
             try{
                 writer.write(String.format(format,os));
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -104,7 +108,6 @@ public class FastIO {
         public void println(){
             try{
                 writer.write(System.lineSeparator());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -115,7 +118,6 @@ public class FastIO {
             try{
                 writer.write(object.toString());
                 writer.write(System.lineSeparator());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -124,8 +126,14 @@ public class FastIO {
         }
 
         @Override
-        public void close()throws IOException{
-            writer.close();
+        public void close(){
+            try{
+                writer.flush();
+                writer.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
         }
     }
 }

@@ -4,18 +4,19 @@ import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class FastIODemo {
-    private static final FastReader fastReader;
-    private static final FastWriter fastWriter;
-    static {
-        fastReader=new FastReader(System.in);
-        fastWriter=new FastWriter(System.out);
-    }
     public static void main(String[] args) {
+        FastReader fastReader=new FastReader(System.in);
+        FastWriter fastWriter=new FastWriter(System.out);
+
         int a=fastReader.nextInt();
         int b= fastReader.nextInt();
         fastWriter.println(a+b);
+
+        fastReader.close();
+        fastWriter.close();
+
     }
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         BufferedReader br;
         StringTokenizer st;
 
@@ -79,9 +80,15 @@ public class FastIODemo {
             return new BigDecimal(next());
         }
 
-        public void close()throws IOException{
-            st=null;
-            br.close();
+        public void close(){
+            try{
+                st=null;
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
         }
     }
 
@@ -94,7 +101,6 @@ public class FastIODemo {
         public void print(Object object){
             try{
                 writer.write(object.toString());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -104,7 +110,6 @@ public class FastIODemo {
         public void printf(String format,Object... os) {
             try{
                 writer.write(String.format(format,os));
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -114,7 +119,6 @@ public class FastIODemo {
         public void println(){
             try{
                 writer.write(System.lineSeparator());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -125,7 +129,6 @@ public class FastIODemo {
             try{
                 writer.write(object.toString());
                 writer.write(System.lineSeparator());
-                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
                 System.exit(1);
@@ -134,8 +137,14 @@ public class FastIODemo {
         }
 
         @Override
-        public void close()throws IOException{
-            writer.close();
+        public void close(){
+            try{
+                writer.flush();
+                writer.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
         }
     }
 }
