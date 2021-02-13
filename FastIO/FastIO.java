@@ -1,7 +1,6 @@
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class FastIO {
