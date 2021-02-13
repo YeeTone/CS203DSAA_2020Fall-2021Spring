@@ -8,24 +8,27 @@ public class FastIODemo {
         FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
 
-        int a=fastReader.nextInt();
-        int b= fastReader.nextInt();
-        fastWriter.println(a+b);
+        while (fastReader.hasNext()){
+            int a=fastReader.nextInt();
+            int b= fastReader.nextInt();
+            fastWriter.println(a+b);
+        }
+
 
         fastReader.close();
         fastWriter.close();
 
     }
     private static class FastReader implements Closeable{
-        BufferedReader br;
-        StringTokenizer st;
+        private final BufferedReader br;
+        private StringTokenizer st;
 
         public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 

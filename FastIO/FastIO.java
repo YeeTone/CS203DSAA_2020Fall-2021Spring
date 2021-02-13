@@ -5,15 +5,15 @@ import java.util.StringTokenizer;
 
 public class FastIO {
     private static class FastReader implements Closeable{
-        BufferedReader br;
-        StringTokenizer st;
+        private final BufferedReader br;
+        private StringTokenizer st;
 
         public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
