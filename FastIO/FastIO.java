@@ -80,7 +80,37 @@ public class FastIO {
         }
     }
 
-    private static class FastWriter implements Closeable {
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
+
+        public FastWriter(OutputStream out){
+            this.writer=new PrintWriter(out);
+        }
+
+        public void print(Object object){
+            writer.write(object.toString());
+        }
+
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
+        }
+
+        public void println(){
+            writer.write(System.lineSeparator());
+        }
+
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
+        }
+
+        @Override
+        public void close() {
+            writer.close();
+        }
+    }
+
+    /*private static class FastWriter implements Closeable {
         private final BufferedWriter writer;
         public FastWriter(OutputStream out){
             this.writer=new BufferedWriter(new OutputStreamWriter(out));
@@ -134,5 +164,5 @@ public class FastIO {
                 System.exit(1);
             }
         }
-    }
+    }*/
 }
