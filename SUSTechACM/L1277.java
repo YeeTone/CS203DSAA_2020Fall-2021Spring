@@ -14,8 +14,11 @@ public class L1277 {
         for (int i = 0; i < t; i++) {
             int n= fastReader.nextInt();
             int k= fastReader.nextInt();
-            System.out.println(getLeafNodesCount(n,k));
+            fastWriter.println(getLeafNodesCount(n,k));
         }
+
+        fastReader.close();
+        fastWriter.close();
     }
     private static long getLeafNodesCount(int n,int k) {
         int maxPow=(int)((Math.log(n*k-n+1)/Math.log(k))-1);
