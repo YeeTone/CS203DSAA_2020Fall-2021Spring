@@ -1,49 +1,71 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+package SUSTechACM;
+
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class L1020 {
     public static void main(String[] args) {
-        InputReader in=new InputReader(System.in);
-        int t=in.nextInt();
+        FastReader fastReader = new FastReader(System.in);
+        FastWriter fastWriter = new FastWriter(System.out);
+        int t = fastReader.nextInt();
+
         for (int i = 0; i < t; i++) {
-            int n=in.nextInt();
-            int m=in.nextInt();
-            int[]array=new int[n];
+            int n = fastReader.nextInt();
+            int m = fastReader.nextInt();
+            HashMap<Integer, Integer> hashMap = new HashMap<>();
             for (int j = 0; j < n; j++) {
-                array[j]=in.nextInt();
+                int value = fastReader.nextInt();
+                hashMap.put(value, j);
             }
-            if(Arrays.binarySearch(array,m)<0){
-                System.out.println("NO");
-            }else {
-                System.out.println("YES");
+
+            fastWriter.println(hashMap.containsKey(m) ? "YES" : "NO");
+        }
+        fastReader.close();
+        fastWriter.close();
+    }
+
+    private static class FastReader implements Closeable {
+        private final BufferedReader br;
+        private StringTokenizer st;
+
+        public FastReader(InputStream in) {
+            br = new BufferedReader(new InputStreamReader(in), 16384);
+            eat("");
+        }
+
+        private void eat(String s) {
+            st = new StringTokenizer(s);
+        }
+
+        public String nextLine() {
+            try {
+                return br.readLine();
+            } catch (IOException e) {
+                return null;
             }
         }
-    }
-    private static class InputReader {
-        public BufferedReader reader;
-        public StringTokenizer tokenizer;
 
-        public InputReader(InputStream stream) {
-            reader = new BufferedReader(new InputStreamReader(stream), 32768);
-            tokenizer = null;
+        public boolean hasNext() {
+            while (!st.hasMoreTokens()) {
+                String s = nextLine();
+                if (s == null) return false;
+                eat(s);
+            }
+            return true;
         }
 
         public String next() {
-            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-                try {
-                    tokenizer = new StringTokenizer(reader.readLine());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            return tokenizer.nextToken();
+            hasNext();
+            return st.nextToken();
         }
+
+        public boolean nextBoolean() {
+            return Boolean.parseBoolean(next());
+        }
+
 
         public int nextInt() {
             return Integer.parseInt(next());
@@ -53,40 +75,62 @@ public class L1020 {
             return Long.parseLong(next());
         }
 
+        public float nextFloat() {
+            return Float.parseFloat(next());
+        }
+
         public double nextDouble() {
             return Double.parseDouble(next());
-        }
-
-        public char[] nextCharArray() {
-            return next().toCharArray();
-        }
-
-        //         public boolean hasNext() {
-//             try {
-//                 return reader.ready();
-//             } catch(IOException e) {
-//                 throw new RuntimeException(e);
-//             }
-//         }
-        public boolean hasNext() {
-            try {
-                String string = reader.readLine();
-                if (string == null) {
-                    return false;
-                }
-                tokenizer = new StringTokenizer(string);
-                return tokenizer.hasMoreTokens();
-            } catch (IOException e) {
-                return false;
-            }
         }
 
         public BigInteger nextBigInteger() {
             return new BigInteger(next());
         }
 
-        public BigDecimal nextBigDecinal() {
+        public BigDecimal nextBigDecimal() {
             return new BigDecimal(next());
+        }
+
+        public void close() {
+            try {
+                st = null;
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+
+        }
+    }
+
+    private static class FastWriter implements Closeable {
+        private final PrintWriter writer;
+
+        public FastWriter(OutputStream out) {
+            this.writer = new PrintWriter(out);
+        }
+
+        public void print(Object object) {
+            writer.write(object.toString());
+        }
+
+        public void printf(String format, Object... os) {
+            writer.write(String.format(format, os));
+        }
+
+        public void println() {
+            writer.write(System.lineSeparator());
+        }
+
+        public void println(Object object) {
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
+        }
+
+        @Override
+        public void close() {
+            writer.flush();
+            writer.close();
         }
     }
 }
