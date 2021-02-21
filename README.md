@@ -1,6 +1,8 @@
 # DSAA
 DSAA Practice
 
-Updating gradually  
-
-FastIO: the fast input/output template for data input and output.
+### Author Information
+Name: YeeTone Wang  
+SID: 11910104  
+Major: CS  
+Email: 11910104@mail.sustech.edu.cn  
