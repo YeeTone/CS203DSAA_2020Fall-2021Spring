@@ -1,28 +1,27 @@
 package SUSTechACM;
 
-import java.math.*;
 import java.io.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
-public class L1363 {
+public class L1374 {
     public static void main(String[] args) {
-        FastReader fastReader =new FastReader(System.in);
+        FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
-        int n= fastReader.nextInt();
-        int k= fastReader.nextInt();
 
-        int[]array=new int[n];
-        for (int i = 0; i < n; i++) {
-            array[i]= fastReader.nextInt();
-        }
-        Arrays.sort(array);
-        fastWriter.println(array[k-1]);
+        String s1=fastReader.next();
+        String s2=fastReader.next();
+
 
         fastReader.close();
         fastWriter.close();
     }
 
-    private static class FastReader implements Closeable{
+    
+
+    private static class FastReader implements Closeable {
         private final BufferedReader br;
         private StringTokenizer st;
 
@@ -124,7 +123,6 @@ public class L1363 {
 
         @Override
         public void close() {
-            writer.flush();
             writer.close();
         }
     }

@@ -21,6 +21,9 @@ public class L1383 {
             //System.out.println(tree);
             tree.levelTraverse();
         }
+
+        fastReader.close();
+        fastWriter.close();
     }
     private static class Tree{
         private final TreeNode[] nodes;
@@ -91,7 +94,7 @@ public class L1383 {
 
     }
 
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         private final BufferedReader br;
         private StringTokenizer st;
 

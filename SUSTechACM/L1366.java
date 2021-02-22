@@ -1,25 +1,46 @@
 package SUSTechACM;
 
-import java.math.*;
 import java.io.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
 
-public class L1363 {
+public class L1366 {
+    //Not solved yet
     public static void main(String[] args) {
-        FastReader fastReader =new FastReader(System.in);
+        FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
         int n= fastReader.nextInt();
-        int k= fastReader.nextInt();
+        int p= fastReader.nextInt();
+        int q= fastReader.nextInt();
 
-        int[]array=new int[n];
+        Orc[]orcs=new Orc[n];
         for (int i = 0; i < n; i++) {
-            array[i]= fastReader.nextInt();
+            long hp= fastReader.nextLong();
+            long atk= fastReader.nextLong();
+            orcs[i]=new Orc(hp,atk);
         }
-        Arrays.sort(array);
-        fastWriter.println(array[k-1]);
+
+        Arrays.sort(orcs,(Comparator.comparingLong(Orc::getImprove)));
+
 
         fastReader.close();
         fastWriter.close();
+    }
+    private static class Orc{
+        long hp;
+        long atk;
+
+        public Orc(long hp,long atk){
+            this.hp=hp;
+            this.atk=atk;
+        }
+
+        public long getImprove(){
+            return hp-atk;
+        }
     }
 
     private static class FastReader implements Closeable{

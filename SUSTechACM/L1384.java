@@ -28,7 +28,7 @@ public class L1384 {
         return h;
     }
 
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         private final BufferedReader br;
         private StringTokenizer st;
 

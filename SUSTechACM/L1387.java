@@ -1,25 +1,72 @@
 package SUSTechACM;
 
-import java.math.*;
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
-public class L1363 {
+public class L1387 {
+    //Not AC
     public static void main(String[] args) {
-        FastReader fastReader =new FastReader(System.in);
+        FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
-        int n= fastReader.nextInt();
-        int k= fastReader.nextInt();
+        int t= fastReader.nextInt();
 
-        int[]array=new int[n];
-        for (int i = 0; i < n; i++) {
-            array[i]= fastReader.nextInt();
+        for (int i = 0; i < t; i++) {
+            int n = fastReader.nextInt();
+            FootballPlayer[] footballPlayers = new FootballPlayer[n];
+            for (int j = 0; j < n; j++) {
+                footballPlayers[j] = new FootballPlayer();
+                footballPlayers[j].aiPower = fastReader.nextInt();
+            }
+
+            for (int j = 0; j < n; j++) {
+                footballPlayers[j].biBuyDeadline = fastReader.nextInt();
+            }
+            /*for (int j = 0; j < n; j++) {
+                fastWriter.println(footballPlayers[j]);
+            }*/
+
+            Arrays.sort(footballPlayers, (o1, o2) -> {
+                if (o1.biBuyDeadline != o2.biBuyDeadline) {
+                    return o1.biBuyDeadline - o2.biBuyDeadline;
+                } else {
+                    return o2.aiPower - o1.aiPower;
+                }
+            });
+
+            Stack<FootballPlayer>footballPlayerStack=new Stack<>();
+
+            for (int j = 0; j < n; j++) {
+                if(footballPlayerStack.isEmpty()){
+                    footballPlayerStack.push(footballPlayers[j]);
+                }else if(footballPlayerStack.peek().biBuyDeadline<footballPlayers[j].biBuyDeadline){
+                    footballPlayerStack.push(footballPlayers[j]);
+                }
+            }
+
+            long ans=0;
+            while (!footballPlayerStack.isEmpty()){
+                //fastWriter.println("footballPlayerStack.peek().aiPower = " + footballPlayerStack.peek().aiPower);
+                ans+=footballPlayerStack.pop().aiPower;
+            }
+            fastWriter.println(ans);
         }
-        Arrays.sort(array);
-        fastWriter.println(array[k-1]);
 
         fastReader.close();
         fastWriter.close();
+    }
+    private static class FootballPlayer{
+        int aiPower;
+        int biBuyDeadline;
+
+        @Override
+        public String toString() {
+            return "FootballPlayer{" +
+                    "aiPower=" + aiPower +
+                    ", biBuyDeadline=" + biBuyDeadline +
+                    '}';
+        }
     }
 
     private static class FastReader implements Closeable{

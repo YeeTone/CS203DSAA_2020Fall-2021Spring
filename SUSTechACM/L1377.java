@@ -42,16 +42,16 @@ public class L1377 {
         return next;
     }
 
-    private static class FastReader implements Closeable {
-        BufferedReader br;
-        StringTokenizer st;
+    private static class FastReader implements Closeable{
+        private final BufferedReader br;
+        private StringTokenizer st;
 
         public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
@@ -118,59 +118,34 @@ public class L1377 {
         }
     }
 
-    private static class FastWriter implements Closeable {
-        private final BufferedWriter writer;
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
+
         public FastWriter(OutputStream out){
-            this.writer=new BufferedWriter(new OutputStreamWriter(out));
+            this.writer=new PrintWriter(out);
         }
 
         public void print(Object object){
-            try{
-                writer.write(object.toString());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+            writer.write(object.toString());
         }
-        public void printf(String format,Object... os) {
-            try{
-                writer.write(String.format(format,os));
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
 
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
         }
+
         public void println(){
-            try{
-                writer.write(System.lineSeparator());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
+            writer.write(System.lineSeparator());
         }
 
-        public void println(Object object) {
-            try{
-                writer.write(object.toString());
-                writer.write(System.lineSeparator());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
         }
 
         @Override
-        public void close(){
-            try{
-                writer.flush();
-                writer.close();
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
+        public void close() {
+            writer.flush();
+            writer.close();
         }
     }
 }
