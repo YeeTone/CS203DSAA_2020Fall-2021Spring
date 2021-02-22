@@ -1,5 +1,5 @@
 # DSAA
-DSAA Practice
+DSAA: Data Structure and Algorithm Analysis  
 
 ### Author Information
 Name: YeeTone Wang  
