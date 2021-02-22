@@ -8,14 +8,9 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class L1121 {
-    private static final FastReader fastReader;
-    private static final FastWriter fastWriter;
-    static {
-        fastReader=new FastReader(System.in);
-        fastWriter=new FastWriter(System.out);
-    }
     public static void main(String[] args) {
-
+        FastReader fastReader=new FastReader(System.in);
+        FastWriter fastWriter=new FastWriter(System.out);
         int t= fastReader.nextInt();
 
         for (int i = 0; i < t; i++) {
@@ -102,8 +97,7 @@ public class L1121 {
             return true;
         }
     }
-
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         private final BufferedReader br;
         private StringTokenizer st;
 
