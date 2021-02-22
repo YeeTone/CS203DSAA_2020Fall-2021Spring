@@ -1,5 +1,3 @@
-package Sort;
-
 import java.util.Arrays;
 
 public class IntSorter {
@@ -96,6 +94,29 @@ public class IntSorter {
                     array[i]=temp;
                     i-=step;
                 }
+            }
+        }
+    }
+
+    public void countSort(int[]array)throws OutOfMemoryError{
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+
+        for(int i:array){
+            max=Math.max(i,max);
+            min=Math.min(i,min);
+        }
+
+        int[]countArray=new int[max-min+1];
+        for(int i:array){
+            countArray[i-min]++;
+        }
+
+        int index=0;
+        for (int i = 0; i < countArray.length; i++) {
+            for (int j = 0; j < countArray[i]; j++) {
+                array[index]=i+min;
+                index++;
             }
         }
     }
