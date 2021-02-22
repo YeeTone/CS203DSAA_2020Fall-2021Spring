@@ -5,14 +5,10 @@ import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class L1279 {
-    private static final FastReader fastReader;
-    private static final FastWriter fastWriter;
-    static {
-        fastReader=new FastReader(System.in);
-        fastWriter=new FastWriter(System.out);
-    }
 
     public static void main(String[] args) {
+        FastReader fastReader=new FastReader(System.in);
+        FastWriter fastWriter=new FastWriter(System.out);
         int t= fastReader.nextInt();
 
         for (int i = 0; i < t; i++) {
@@ -29,7 +25,7 @@ public class L1279 {
             }
 
             TreeNode tree=getTree(preorder,inorder,0,n-1,0,n-1);
-            postTraversal(tree);
+            postTraversal(tree,fastWriter);
             fastWriter.println();
         }
 
@@ -37,10 +33,10 @@ public class L1279 {
         fastWriter.close();
 
     }
-    private static void postTraversal(TreeNode node){
+    private static void postTraversal(TreeNode node,FastWriter fastWriter){
         if(node!=null){
-            postTraversal(node.left);
-            postTraversal(node.right);
+            postTraversal(node.left,fastWriter);
+            postTraversal(node.right,fastWriter);
             fastWriter.print(node.value+" ");
         }
     }
@@ -80,8 +76,7 @@ public class L1279 {
         }
     }
 
-
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         private final BufferedReader br;
         private StringTokenizer st;
 

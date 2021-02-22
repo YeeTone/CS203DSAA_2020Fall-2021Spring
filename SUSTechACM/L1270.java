@@ -41,13 +41,8 @@ public class L1270 {
                 fastWriter.println(answers_left[j]+" "+answers_right[j]);
             }
         }
-        try{
-            fastReader.close();
-            fastWriter.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
+        fastReader.close();
+        fastWriter.close();
     }
 
     private static void getAnswers(int[] heights, int[] answers_right, Stack<Integer> indexStack, Stack<Integer> numberStack, int j) {
@@ -62,16 +57,16 @@ public class L1270 {
         answers_right[j]=rightIndex;
     }
 
-    private static class FastReader implements Closeable {
-        BufferedReader br;
-        StringTokenizer st;
+    private static class FastReader implements Closeable{
+        private final BufferedReader br;
+        private StringTokenizer st;
 
         public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
@@ -126,58 +121,44 @@ public class L1270 {
             return new BigDecimal(next());
         }
 
-        public void close()throws IOException{
-            st=null;
-            br.close();
+        public void close(){
+            try{
+                st=null;
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
         }
     }
 
-    private static class FastWriter implements Closeable {
-        private final BufferedWriter writer;
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
+
         public FastWriter(OutputStream out){
-            this.writer=new BufferedWriter(new OutputStreamWriter(out));
+            this.writer=new PrintWriter(out);
         }
 
         public void print(Object object){
-            try{
-                writer.write(object.toString());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+            writer.write(object.toString());
         }
-        public void printf(String format,Object... os) {
-            try{
-                writer.write(String.format(format,os));
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
 
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
         }
+
         public void println(){
-            try{
-                writer.write(System.lineSeparator());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
+            writer.write(System.lineSeparator());
         }
 
-        public void println(Object object) {
-            try{
-                writer.write(object.toString());
-                writer.write(System.lineSeparator());
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
         }
 
         @Override
-        public void close()throws IOException{
+        public void close() {
             writer.flush();
             writer.close();
         }

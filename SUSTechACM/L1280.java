@@ -3,18 +3,14 @@ package SUSTechACM;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class L1280 {
-    private static final FastReader fastReader;
-    private static final FastWriter fastWriter;
-    static {
-        fastReader=new FastReader(System.in);
-        fastWriter=new FastWriter(System.out);
-    }
+
     public static void main(String[] args) {
+        FastReader fastReader=new FastReader(System.in);
+        FastWriter fastWriter=new FastWriter(System.out);
         int t= fastReader.nextInt();
         for (int i = 0; i < t; i++) {
             int n= fastReader.nextInt();
@@ -39,7 +35,7 @@ public class L1280 {
         fastReader.close();
         fastWriter.close();
     }
-    private static class FastReader implements Closeable {
+    private static class FastReader implements Closeable{
         private final BufferedReader br;
         private StringTokenizer st;
 

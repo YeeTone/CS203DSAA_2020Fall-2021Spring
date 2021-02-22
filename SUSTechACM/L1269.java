@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class L1269 {
     public static void main(String[] args) {
         FastReader fastReader=new FastReader(System.in);
+        FastWriter fastWriter=new FastWriter(System.out);
         int n= fastReader.nextInt();
 
         RingQueue ringQueue=new RingQueue();
@@ -32,9 +33,12 @@ public class L1269 {
         }
 
         while (!ringQueue.isEmpty()){
-            System.out.print(ringQueue.peek()+" ");
+            fastWriter.print(ringQueue.peek()+" ");
             ringQueue.deQueue();
         }
+
+        fastReader.close();
+        fastWriter.close();
     }
     private static class RingQueue{
         private static final int MAX_SIZE=20000000+10;
@@ -69,16 +73,16 @@ public class L1269 {
         }
     }
 
-    private static class FastReader implements Closeable {
-        BufferedReader br;
-        StringTokenizer st;
+    private static class FastReader implements Closeable{
+        private final BufferedReader br;
+        private StringTokenizer st;
 
         public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
@@ -133,62 +137,45 @@ public class L1269 {
             return new BigDecimal(next());
         }
 
-        public void close()throws IOException{
-            st=null;
-            br.close();
+        public void close(){
+            try{
+                st=null;
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
         }
     }
 
-    private static class FastWriter implements Closeable {
-        private final BufferedWriter writer;
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
+
         public FastWriter(OutputStream out){
-            this.writer=new BufferedWriter(new OutputStreamWriter(out));
+            this.writer=new PrintWriter(out);
         }
 
         public void print(Object object){
-            try{
-                writer.write(object.toString());
-                writer.flush();
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+            writer.write(object.toString());
         }
-        public void printf(String format,Object... os) {
-            try{
-                writer.write(String.format(format,os));
-                writer.flush();
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
 
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
         }
+
         public void println(){
-            try{
-                writer.write(System.lineSeparator());
-                writer.flush();
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
+            writer.write(System.lineSeparator());
         }
 
-        public void println(Object object) {
-            try{
-                writer.write(object.toString());
-                writer.write(System.lineSeparator());
-                writer.flush();
-            }catch (IOException e){
-                e.printStackTrace();
-                System.exit(1);
-            }
-
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
         }
 
         @Override
-        public void close()throws IOException{
+        public void close() {
+            writer.flush();
             writer.close();
         }
     }

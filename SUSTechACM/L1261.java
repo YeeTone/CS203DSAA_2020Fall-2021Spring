@@ -1,26 +1,24 @@
 package SUSTechACM;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 public class L1261 {
     public static void main(String[] args) {
-        FastScanner fastScanner = new FastScanner(System.in);
-        int t = fastScanner.nextInt();
+        FastReader fastReader = new FastReader(System.in);
+        FastWriter fastWriter = new FastWriter(System.out);
+        int t = fastReader.nextInt();
 
         for (int i = 0; i < t; i++) {
 
-            int n = fastScanner.nextInt();
+            int n = fastReader.nextInt();
             PolyItemNode polyHead1 = new PolyItemNode();
             PolyItemNode temp1 = polyHead1;
             for (int j = 0; j < n; j++) {
-                long coef=fastScanner.nextLong();
-                int expo= fastScanner.nextInt();
+                long coef= fastReader.nextLong();
+                int expo= fastReader.nextInt();
                 if(coef==0){
                     continue;
                 }
@@ -34,12 +32,12 @@ public class L1261 {
             }
             //polyHead1.printLinkedList();
 
-            int m = fastScanner.nextInt();
+            int m = fastReader.nextInt();
             PolyItemNode polyHead2 = new PolyItemNode();
             PolyItemNode temp2 = polyHead2;
             for (int j = 0; j < m; j++) {
-                long coef=fastScanner.nextLong();
-                int expo= fastScanner.nextInt();
+                long coef= fastReader.nextLong();
+                int expo= fastReader.nextInt();
                 if(coef==0){
                     continue;
                 }
@@ -55,16 +53,19 @@ public class L1261 {
             PolyItemNode result=getSum(polyHead1,polyHead2);
             //result.printLinkedList();
 
-            int q= fastScanner.nextInt();
+            int q= fastReader.nextInt();
             for (int j = 0; j < q; j++) {
-                int expo= fastScanner.nextInt();
-                System.out.print((long) getCoef(result,expo));
+                int expo= fastReader.nextInt();
+                fastWriter.print((long) getCoef(result,expo));
                 if(j!=q-1){
-                    System.out.print(" ");
+                    fastWriter.print(" ");
                 }
             }
-            System.out.println();
+            fastWriter.println();
         }
+
+        fastReader.close();
+        fastWriter.close();
     }
     private static double getCoef(PolyItemNode resultPoly,int expo){
         PolyItemNode temp=resultPoly;
@@ -199,16 +200,16 @@ public class L1261 {
                     '}';
         }
     }
-    private static class FastScanner {
-        BufferedReader br;
-        StringTokenizer st;
+    private static class FastReader implements Closeable {
+        private final BufferedReader br;
+        private StringTokenizer st;
 
-        public FastScanner(InputStream in) {
+        public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
@@ -220,18 +221,24 @@ public class L1261 {
             }
         }
 
-        public void hasNext() {
-            while (!st.hasMoreTokens()) {
+        public boolean hasNext() {
+            while(!st.hasMoreTokens()) {
                 String s = nextLine();
-                if (s == null) return;
+                if(s==null) return false;
                 eat(s);
             }
+            return true;
         }
 
         public String next() {
             hasNext();
             return st.nextToken();
         }
+
+        public boolean nextBoolean(){
+            return Boolean.parseBoolean(next());
+        }
+
 
         public int nextInt() {
             return Integer.parseInt(next());
@@ -248,9 +255,11 @@ public class L1261 {
         public double nextDouble(){
             return Double.parseDouble(next());
         }
+
         public BigInteger nextBigInteger(){
             return new BigInteger(next());
         }
+
         public BigDecimal nextBigDecimal(){
             return new BigDecimal(next());
         }
@@ -261,8 +270,40 @@ public class L1261 {
                 br.close();
             }catch (IOException e){
                 e.printStackTrace();
+                System.exit(1);
             }
 
+        }
+    }
+
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
+
+        public FastWriter(OutputStream out){
+            this.writer=new PrintWriter(out);
+        }
+
+        public void print(Object object){
+            writer.write(object.toString());
+        }
+
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
+        }
+
+        public void println(){
+            writer.write(System.lineSeparator());
+        }
+
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
+        }
+
+        @Override
+        public void close() {
+            writer.flush();
+            writer.close();
         }
     }
 }

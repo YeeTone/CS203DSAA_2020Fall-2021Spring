@@ -3,36 +3,19 @@ package SUSTechACM;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class L1283 {
+public class L1301 {
     public static void main(String[] args) {
         FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
-        int t= fastReader.nextInt();
+        int t=fastReader.nextInt();
 
         for (int i = 0; i < t; i++) {
-            int n= fastReader.nextInt();
-            PriorityQueue<Long>priorityQueue=new PriorityQueue<>();
-            for (int j = 0; j < n; j++) {
-                long value= fastReader.nextLong();
-                priorityQueue.offer(value);
-            }
 
-            long effort=0;
-            while (priorityQueue.size()>1){
-                long a= priorityQueue.poll();
-                long b= priorityQueue.poll();
-                effort+=a+b;
-                priorityQueue.offer(a+b);
-            }
-            fastWriter.println(effort);
         }
-        fastReader.close();
-        fastWriter.close();
     }
-    private static class FastReader implements Closeable{
+    private static class FastReader implements Closeable {
         private final BufferedReader br;
         private StringTokenizer st;
 
