@@ -3,32 +3,37 @@ package SUSTechACM;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class L1353 {
-
-    //Not solved yet:Time Limit Exceed
     public static void main(String[] args) {
         FastReader fastReader=new FastReader(System.in);
         FastWriter fastWriter=new FastWriter(System.out);
 
-
         int t= fastReader.nextInt();
+
         for (int i = 0; i < t; i++) {
             int n= fastReader.nextInt();
-            PriorityQueue<Integer>priorityQueue=new PriorityQueue<>();
+            PriorityQueue<Integer>minHeap=new PriorityQueue<>();
+            PriorityQueue<Integer>maxHeap=new PriorityQueue<>(((o1, o2) -> (o2-o1)));
 
             for (int j = 0; j < n; j++) {
-                int value = fastReader.nextInt();
-                priorityQueue.offer(value);
-                if (j % 2 == 0) {
-                    fastWriter.print(priorityQueue.toArray()[j / 2] + " ");
+                int value= fastReader.nextInt();
+                if(j%2==0){
+                    maxHeap.offer(value);
+                    minHeap.offer(maxHeap.poll());
+                }else {
+                    minHeap.offer(value);
+                    maxHeap.offer(minHeap.poll());
+                }
+
+                if(j%2==0){
+                    fastWriter.print(minHeap.peek()+" ");
                 }
             }
             fastWriter.println();
         }
+
         fastReader.close();
         fastWriter.close();
 
@@ -141,3 +146,4 @@ public class L1353 {
         }
     }
 }
+
