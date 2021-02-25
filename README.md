@@ -1,6 +1,6 @@
 # DSAA
 DSAA: Data Structure and Algorithm Analysis  
-Not Solved in SUSTechACM: 1353,1366,1374,1387
+Not Solved in SUSTechACM: 1366,1374,1387
 
 ### Course Information  
 2020Fall Instructor: Prof.Tang Bo  
