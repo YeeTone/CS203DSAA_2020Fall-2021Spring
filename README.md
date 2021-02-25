@@ -1,6 +1,10 @@
-# DSAA
-DSAA: Data Structure and Algorithm Analysis  
-Not Solved in SUSTechACM: 1366,1374,1387
+# CS203 DSAA
+CS203 DSAA: Data Structure and Algorithm Analysis  
+This repository is updating gradually.  
+More Solutions to DSAA problems will be uploaded sooooooooooooooooooooooon~~
+### Not Solved Problem List
+JCoder:  
+SUSTechACM: 1366,1374,1387  
 
 ### Course Information  
 2020Fall Instructor: Prof.Tang Bo  
