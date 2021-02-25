@@ -7,4 +7,6 @@ Major: CS
 Email: 11910104@mail.sustech.edu.cn  
 
 ### Acknowledgement
-The author shows his great attitude to Beiyuan and Yinhu, for their sincere help to the problem L104, L205 and L206.  
+The author shows his great attitude to:(people and their contribution to the problem)  
+Beiyuan and Yinhu: L104, L205 and L206;  
+cc123321: L106;  
