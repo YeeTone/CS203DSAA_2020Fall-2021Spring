@@ -1,20 +1,27 @@
-package CS203;
+package JCoderAC;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
 public class L105{
     public static void main(String[] args) {
-        FastScanner reader=new FastScanner(System.in);
-        int n = reader.nextInt();
-        int m = reader.nextInt();
+        FastReader fastReader =new FastReader(System.in);
+        FastWriter fastWriter =new FastWriter(System.out);
+
+        int n = fastReader.nextInt();
+        int m = fastReader.nextInt();
         long[][] values = new long[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                values[i][j] = reader.nextLong();
+                values[i][j] = fastReader.nextLong();
             }
         }
-        System.out.println(minimumEffortPath(n,m,values));
+        fastWriter.println(minimumEffortPath(n,m,values));
+
+        fastReader.close();
+        fastWriter.close();
     }
 
     private static long minimumEffortPath(int n,int m,long[][]map) {
@@ -112,16 +119,16 @@ public class L105{
         }
     }
 
-    private static class FastScanner {
-        BufferedReader br;
-        StringTokenizer st;
+    private static class FastReader implements Closeable{
+        private final BufferedReader br;
+        private StringTokenizer st;
 
-        public FastScanner(InputStream in) {
+        public FastReader(InputStream in) {
             br = new BufferedReader(new InputStreamReader(in), 16384);
             eat("");
         }
 
-        public void eat(String s) {
+        private void eat(String s) {
             st = new StringTokenizer(s);
         }
 
@@ -133,18 +140,24 @@ public class L105{
             }
         }
 
-        public void hasNext() {
-            while (!st.hasMoreTokens()) {
+        public boolean hasNext() {
+            while(!st.hasMoreTokens()) {
                 String s = nextLine();
-                if (s == null) return;
+                if(s==null) return false;
                 eat(s);
             }
+            return true;
         }
 
         public String next() {
             hasNext();
             return st.nextToken();
         }
+
+        public boolean nextBoolean(){
+            return Boolean.parseBoolean(next());
+        }
+
 
         public int nextInt() {
             return Integer.parseInt(next());
@@ -153,95 +166,63 @@ public class L105{
         public long nextLong() {
             return Long.parseLong(next());
         }
+
+        public float nextFloat(){
+            return Float.parseFloat(next());
+        }
+
+        public double nextDouble(){
+            return Double.parseDouble(next());
+        }
+
+        public BigInteger nextBigInteger(){
+            return new BigInteger(next());
+        }
+
+        public BigDecimal nextBigDecimal(){
+            return new BigDecimal(next());
+        }
+
+        public void close(){
+            try{
+                st=null;
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+                System.exit(1);
+            }
+
+        }
     }
-}
 
-class L105_UF {
-    public static int n;
-    public static int m;
-    public static long[][] map;
-    public static edge[] edges;
-    public static int[] fa;
-    public static int[] sz;
-    static class edge implements Comparable{
-        int point1;
-        int point2;
-        long val;
+    private static class FastWriter implements Closeable{
+        private final PrintWriter writer;
 
-        public edge(int point1, int point2, long val) {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.val = val;
+        public FastWriter(OutputStream out){
+            this.writer=new PrintWriter(out);
+        }
+
+        public void print(Object object){
+            writer.write(object.toString());
+        }
+
+        public void printf(String format,Object... os){
+            writer.write(String.format(format,os));
+        }
+
+        public void println(){
+            writer.write(System.lineSeparator());
+        }
+
+        public void println(Object object){
+            writer.write(object.toString());
+            writer.write(System.lineSeparator());
         }
 
         @Override
-        public int compareTo(Object o) {
-            edge oo = (edge) o;
-            return this.val>oo.val?1:-1;
-        }
-    }
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        n = in.nextInt();
-        m = in.nextInt();
-        edges = new edge[2*m*n-n-m];
-        map = new long[2][m];
-        fa = new int[n*m];
-        sz = new int[n*m];
-        long ans = 0L;
-        int edge_index = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                map[i%2][j] = in.nextLong();
-                //construct the edge from (i,j-1) to (i,j)
-                if(j!=0){
-                    edges[edge_index++] =new edge(i*m+j-1,i*m+j,Math.max(map[i%2][j-1],map[i%2][j]));
-                }
-                //construct the edge from (i-1,j) to (i,j)
-                if(i!=0){
-                    edges[edge_index++] = new edge((i-1)*m+j,i*m+j,Math.max(map[0][j],map[1][j]));
-                }
-
-            }
-        }
-        Arrays.sort(edges);
-
-        for (int i = 0; i < n * m; i++) {
-            fa[i] = i;
-        }
-        for (int i = 0; i < n * m; i++) {
-            sz[i] = 1;
-        }
-        for (int i = 0; i < 2*m*n-n-m; i++) {
-            union(edges[i].point1,edges[i].point2);
-            ans = Math.max(ans,edges[i].val);
-            if(isUnion(0,m*n-1)){
-                break;
-            }
-        }
-        System.out.println(ans);
-    }
-
-    public static int find(int x){
-        if(fa[x] == x)return fa[x];
-        fa[x] = find(fa[x]);
-        return fa[x];
-    }
-
-    public static boolean isUnion(int i, int j){
-        return find(i) == find(j);
-    }
-
-    public static void union(int x, int y){
-        int xfa = find(x);
-        int yfa = find(y);
-        if (xfa == yfa) return;
-        if(sz[xfa]>=sz[yfa]){
-            sz[xfa] += sz[yfa];
-            fa[yfa] = xfa;
-        }else{
-            sz[yfa] += sz[xfa];
-            fa[xfa] = yfa;
+        public void close() {
+            writer.flush();
+            writer.close();
         }
     }
 }
