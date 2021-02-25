@@ -4,7 +4,7 @@ Not Solved in SUSTechACM: 1353,1366,1374,1387
 
 ### Course Information  
 2020Fall Instructor: Prof.Tang Bo  
-2021Spring Instructor: Prof.Chen Ran  
+2021Spring Instructor: Prof.Cheng Ran  
 
 ### Author Information
 Name: YeeTone Wang  
