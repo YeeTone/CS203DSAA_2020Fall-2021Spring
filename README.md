@@ -1,5 +1,7 @@
 # CS203 DSAA
 ## More Solutions to DSAA problems will be uploaded soooooon~~
+  
+## Hint: You can refer to the solution codes there, but make sure the codes are closed when you are writing the code for DSAA problems!
 ### About This Repository
 CS203 DSAA: Data Structure and Algorithm Analysis  
 This repository is updating gradually.  
