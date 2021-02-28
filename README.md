@@ -9,10 +9,15 @@ CS203 DSAA: Data Structure and Algorithm Analysis
 This repository is updating gradually.  
 
 ### Course Information  
-2020Fall Instructor: Prof.Bo Tang  
-Online Judge Platform: SUSTechACM https://acm.sustech.edu.cn/  
-2021Spring Instructor: Prof.Ran Cheng  
-Online Judge Platform: JCoder http://oj.sustech.xyz/  
+2020Fall Instructor: **Prof.Bo Tang**  
+https://faculty.sustech.edu.cn/tangb3/  
+Online Judge Platform: SUSTechACM  
+https://acm.sustech.edu.cn/  
+  
+2021Spring Instructor: **Prof.Ran Cheng**  
+https://faculty.sustech.edu.cn/chengr/  
+Online Judge Platform: JCoder  
+http://oj.sustech.xyz/  
 
 ### Author Information
 Name: YeeTone Wang  
