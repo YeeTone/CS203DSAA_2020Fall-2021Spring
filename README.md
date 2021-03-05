@@ -4,6 +4,19 @@
 ## Hints
 1: You can refer to the solution codes there, but make sure the codes are closed when you are writing the code for DSAA problems!  
 2: You are sincerely welcomed to contact the author if you have any ideas to help solving these problems on the not-solved list.  
+3: Recently, it is found that the FastIO template may cause **MLE(Memory Limit Exceeded)** on the OJ:JCoder, due to unknown reasons. If you face such kinds of problems, please use the following template to read data:  
+Read String:  
+```
+StreamTokenizer tokenizer=new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+tokenizer.nextToken();
+String s=tokenizer.sval;
+```
+Read int/long/float/double: (Using integer as an exmaple)  
+```
+StreamTokenizer tokenizer=new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+tokenizer.nextToken();
+int x= (int) tokenizer.nval;
+```
 ### About This Repository
 CS203 DSAA: Data Structure and Algorithm Analysis  
 This repository is updating gradually.  
