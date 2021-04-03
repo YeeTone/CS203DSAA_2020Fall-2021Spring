@@ -39,5 +39,5 @@ Major: CS
 Email: 11910104@mail.sustech.edu.cn  
 
 ### Not Solved Problem List
-JCoder: none yet  
+JCoder: L406, L506, L606  
 SUSTechACM: 1366,1374,1387  
