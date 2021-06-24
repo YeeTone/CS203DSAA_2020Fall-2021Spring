@@ -2,9 +2,9 @@
 ## More Solutions to DSAA problems will be uploaded soooooon~~
   
 ## Hints
-1: You can refer to the solution codes there, but make sure the codes are closed when you are writing the code for DSAA problems!  
-2: You are sincerely welcomed to contact the author if you have any ideas to help solving these problems on the not-solved list.  
-3: Recently, it is found that the FastIO template may cause **MLE(Memory Limit Exceeded)** on the OJ:JCoder, due to unknown reasons. If you face such kinds of problems, please use the following template to read data:  
+1. You can refer to the solution codes there, but make sure the codes are closed when you are writing the code for DSAA problems!  
+2. You are sincerely welcomed to contact the author if you have any ideas to help solving these problems on the not-solved list.  
+3. Recently, it is found that the FastIO template may cause **MLE(Memory Limit Exceeded)** on the OJ:JCoder, due to unknown reasons. If you face such kinds of problems, please use the following template to read data:  
 Read String:  
 ```
 StreamTokenizer tokenizer=new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
@@ -22,12 +22,12 @@ CS203 DSAA: Data Structure and Algorithm Analysis
 This repository is updating gradually.  
 
 ### Course Information  
-2020Fall Instructor: **Prof.Bo Tang**  
+1. 2020Fall Instructor: **Prof.Bo Tang**  
 https://faculty.sustech.edu.cn/tangb3/  
 Online Judge Platform: SUSTechACM  
 https://acm.sustech.edu.cn/  
   
-2021Spring Instructor: **Prof.Ran Cheng**  
+2. 2021Spring Instructor: **Prof.Ran Cheng**  
 https://faculty.sustech.edu.cn/chengr/  
 Online Judge Platform: JCoder  
 http://oj.sustech.xyz/  
